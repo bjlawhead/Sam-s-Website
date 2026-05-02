@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +11,7 @@
       --green-light: #43a047;
       --green-dark: #1b5e20;
       --gold: #f9a825;
+      --gold-light: #fdd835;
       --cream: #fafaf7;
       --charcoal: #1c1c1c;
       --gray: #666;
@@ -78,16 +78,16 @@
       padding: 0.4rem 1rem;
       border-radius: 4px;
       font-weight: 800 !important;
-      transition: opacity 0.2s !important;
+      transition: opacity 0.2s, transform 0.15s !important;
     }
 
-    .nav-cta:hover { opacity: 0.85; }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
       background:
-        linear-gradient(160deg, rgba(27,94,32,0.9) 0%, rgba(0,0,0,0.55) 100%),
+        linear-gradient(160deg, rgba(27,94,32,0.92) 0%, rgba(0,0,0,0.6) 100%),
         url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
       display: flex;
       align-items: center;
@@ -95,14 +95,14 @@
     }
 
     .hero-inner {
-      max-width: 620px;
+      max-width: 640px;
       animation: fadeUp 0.8s ease both;
     }
 
     .hero-badge {
       display: inline-block;
       background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.2);
       color: var(--white);
       border-radius: 6px;
       padding: 0.7rem 1.1rem;
@@ -161,10 +161,10 @@
       font-weight: 800;
       font-size: 0.95rem;
       text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
+      transition: background 0.2s, transform 0.15s;
     }
 
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
 
     .btn-outline {
       background: transparent;
@@ -224,13 +224,14 @@
       background: var(--cream);
       border-radius: 8px;
       padding: 1.8rem 1.6rem;
-      border-left: 3px solid var(--green);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border-left: 4px solid var(--green);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
 
     .service-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(46,125,50,0.13);
+      border-color: var(--gold);
     }
 
     .service-icon {
@@ -253,47 +254,64 @@
       line-height: 1.6;
     }
 
-    /* ── ABOUT ── */
-    #about {
-      background: var(--light-gray);
-      max-width: 680px;
+    /* ── ABOUT + CONTACT (combined) ── */
+    #about-contact {
+      background: var(--green-dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
     }
 
-    .about-content blockquote {
+    /* left: mission */
+    .mission-side .section-label { color: var(--gold); opacity: 0.85; }
+
+    .mission-side .section-title { color: var(--white); }
+    .mission-side .section-title span { color: var(--gold); }
+
+    .mission-side blockquote {
       border-left: 3px solid var(--gold);
       padding-left: 1.1rem;
-      margin: 1.2rem 0;
-      font-size: 1rem;
-      color: var(--charcoal);
+      margin: 1.4rem 0;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.9);
       line-height: 1.75;
       font-weight: 600;
+      font-style: italic;
     }
 
-    .about-content p {
-      color: var(--gray);
+    .mission-side p {
+      color: rgba(255,255,255,0.7);
       line-height: 1.75;
       font-size: 0.95rem;
       margin-bottom: 0.7rem;
     }
 
-    /* ── CONTACT ── */
-    #contact { background: var(--white); }
+    /* divider */
+    .section-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.12);
+      align-self: stretch;
+      display: none; /* shown via grid gap */
+    }
 
-    .contact-wrap { max-width: 600px; }
+    /* right: contact */
+    .contact-side .section-label { color: var(--gold); opacity: 0.85; }
+    .contact-side .section-title { color: var(--white); }
+    .contact-side .section-title span { color: var(--gold); }
 
-    .contact-wrap .section-title { margin-bottom: 0.8rem; }
-
-    .contact-wrap > p {
-      color: var(--gray);
+    .contact-side > p {
+      color: rgba(255,255,255,0.65);
       line-height: 1.7;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
     }
 
     .contact-details {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.1rem;
     }
 
     .contact-details li {
@@ -303,42 +321,53 @@
     }
 
     .contact-details .ci {
-      background: var(--green);
-      color: var(--white);
+      background: rgba(249,168,37,0.15);
+      border: 1px solid rgba(249,168,37,0.35);
+      color: var(--gold);
       border-radius: 8px;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.05rem;
       flex-shrink: 0;
     }
 
     .contact-details .ct strong {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: var(--charcoal);
+      color: var(--gold);
       margin-bottom: 0.1rem;
+      opacity: 0.8;
     }
 
     .contact-details .ct a,
     .contact-details .ct span {
-      color: var(--gray);
+      color: rgba(255,255,255,0.85);
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 600;
+      transition: color 0.2s;
     }
 
-    .contact-details .ct a:hover { color: var(--green); }
+    .contact-details .ct a:hover { color: var(--gold); }
+
+    .contact-details .ct .sub-cities {
+      display: block;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.15rem;
+      font-weight: 600;
+    }
 
     /* ── FOOTER ── */
     footer {
       background: var(--charcoal);
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
       text-align: center;
       padding: 2rem 6%;
       font-size: 0.85rem;
@@ -351,7 +380,7 @@
       letter-spacing: 1px;
     }
 
-    footer a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: var(--gold); }
 
     /* ── ANIMATION ── */
@@ -373,6 +402,7 @@
       .nav-links { display: none; }
       .hero-btns { flex-direction: column; }
       .btn-primary, .btn-outline { text-align: center; }
+      #about-contact { grid-template-columns: 1fr; gap: 3rem; }
     }
   </style>
 </head>
@@ -383,8 +413,8 @@
     <div class="nav-logo">First Call<br><span>Property Services</span></div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+      <li><a href="#about-contact">About</a></li>
+      <li><a href="#about-contact" class="nav-cta">Get a Quote</a></li>
     </ul>
   </nav>
 
@@ -398,7 +428,7 @@
       <h1>Your First Call.<br><span>Every Job.</span></h1>
       <p>From yard work and pressure washing to handyman tasks, deliveries, and junk removal — we handle the jobs you don't have time for.</p>
       <div class="hero-btns">
-        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#about-contact" class="btn-primary">Get a Free Quote</a>
         <a href="#services" class="btn-outline">See Our Services</a>
       </div>
     </div>
@@ -445,9 +475,11 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-content reveal">
+  <!-- ABOUT + CONTACT (combined) -->
+  <section id="about-contact">
+
+    <!-- LEFT: Mission -->
+    <div class="mission-side reveal">
       <div class="section-label">Our Mission</div>
       <div class="section-title">Built on <span>Honest Work</span></div>
       <blockquote>
@@ -455,13 +487,10 @@
       </blockquote>
       <p>Through reliable service and honest work, we strive to become your first call — and a trusted recommendation to everyone you know.</p>
       <p>We're not a big faceless company. We're your neighbor, and we take pride in every job we do, big or small.</p>
-      <a href="#contact" class="btn-primary" style="display:inline-block; margin-top:1.2rem;">Get in Touch →</a>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-wrap reveal">
+    <!-- RIGHT: Contact -->
+    <div class="contact-side reveal">
       <div class="section-label">Contact Us</div>
       <div class="section-title">Let's Get <span>To Work</span></div>
       <p>Ready to check something off your list? Reach out for a free quote — no pressure, no commitment.</p>
@@ -492,11 +521,12 @@
           <div class="ct">
             <strong>Service Area</strong>
             <span>Northwest Metro Atlanta, GA</span>
-            <span style="display:block; font-size:0.8rem; color:#999; margin-top:0.15rem;">Kennesaw · Marietta · Smyrna · Woodstock · Acworth · Cartersville · Hiram · Dallas</span>
+            <span class="sub-cities">Kennesaw · Marietta · Smyrna · Woodstock · Acworth · Cartersville · Hiram · Dallas</span>
           </div>
         </li>
       </ul>
     </div>
+
   </section>
 
   <!-- FOOTER -->
